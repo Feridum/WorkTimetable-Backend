@@ -1,25 +1,19 @@
-from flask import Blueprint
 
-event = Blueprint('event', __name__)
-
-
-@event.route('/')
-def get_events():
-    return 'get'
+from flask_restful import Resource
 
 
-@event.route('/<name>', methods=['POST'])
-def post_events(name):
-    return name
+class Events(Resource):
+    def get(self):
+        return 'get'
 
-@event.route('/<int:id>', methods=['PUT'])
-def put_events(id):
-    return 'put %d '% id
+    def post(self, name):
+        return name
 
-@event.route('/<int:id>', methods=['DELETE'])
-def delete_events(id):
-    return 'delete %d '% id
+    def put(self, id: int):
+        return 'put %d ' % id
 
-@event.route('/<int:id>/<name2>', methods=['PATCH'])
-def patch_events(id,name2):
-    return 'put %d %s' % (id,name2)
+    def delete(self, id: int):
+        return 'delete %d ' % id
+
+    def patch(self, id: int, name):
+        return 'put %d %s' % (id, name)

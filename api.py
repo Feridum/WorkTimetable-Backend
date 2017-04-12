@@ -1,17 +1,18 @@
 from flask import Flask, Blueprint
-from routes.events import event
+from flask_restful import Resource, Api
+from routes.events import Events
+
 app = Flask(__name__)
-app.debug = True
 
 
-api = Blueprint('api',__name__)
+api = Api(app)
 
-@api.route('/')
-def hello_world():
-    return 'Hello world!'
+class Index(Resource):
+    def get(self):
+        return {self.representations}
 
-app.register_blueprint(api,url_prefix="/api")
-app.register_blueprint(event,url_prefix="/api/events")
+api.add_resource(Index, '/api')
+api.add_resource(Events,'/api/events', '/api/events/<name>', '/api/events/<int:id>', '/api/events/<int:id>/<name>')
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
