@@ -1,0 +1,9 @@
+import configparser
+
+config = configparser.ConfigParser()
+config['database'] = {
+    'user': 'username',
+    'password': 'password',
+    'server': 'serwer adress',
+    'database': 'database name'
+}

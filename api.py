@@ -1,9 +1,6 @@
-from flask import Flask, Blueprint
 from flask_restful import Resource, Api
 from routes.events import Events
-
-app = Flask(__name__)
-
+from app import app
 
 api = Api(app)
 
