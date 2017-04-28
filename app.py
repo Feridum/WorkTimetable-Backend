@@ -9,3 +9,19 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'mssql+pyodbc://%s:%s@%s/%s?driver=SQL+S
 
 
 db = SQLAlchemy(app)
+
+def push(row):
+    db.session.add(row)
+    db.session.commit()
+
+def delete(row):
+    db.session.delete(row)
+    db.session.commit()
+
+def patch(row, column, value):
+    setattr(row, row.column, value)
+    db.session.commit()
+
+def put(row,value):
+    row.update(value)
+    db.session.commit()
